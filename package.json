@@ -1,0 +1,28 @@
+{ "name": "cfg-cli-env-180111-pmb",
+  "version": "0.1.0",
+  "description": "Yet another CLI options parser, with fallback to environment variables.",
+  "keywords": [],
+
+  "author": "M.K. (https://github.com/mk-pmb)",
+  "homepage": "https://github.com/mk-pmb/cfg-cli-env-180111-pmb-js/#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mk-pmb/cfg-cli-env-180111-pmb-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mk-pmb/cfg-cli-env-180111-pmb-js/issues"
+  },
+  "contributors": [],
+
+  "private": false, "license": "ISC",
+
+  "main": "ce.js",
+  "scripts": { "test": "nodejs test.usage.js" },
+  "directories": { "test": "test" },
+
+  "devDependencies": {
+  },
+
+
+  "npm vs. BOM = Unexpected token": "-*- coding: UTF-8 -*-"
+}
