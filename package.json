@@ -1,5 +1,5 @@
 { "name": "cfg-cli-env-180111-pmb",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Yet another CLI options parser, with fallback to environment variables.",
   "keywords": [],
 

@@ -5,9 +5,9 @@
 var eq = require('assert').deepStrictEqual;
 
 
-(function readmeDemo(args, env) {
+(function readmeDemo(argv, env) {
   // #BEGIN# usage demo
-  args = [ '/bin/dummy', 'test.js',
+  argv = [ '/bin/dummy', 'test.js',
     '--foo',
     'bar',
     '--foo-bar=12',
@@ -20,11 +20,15 @@ var eq = require('assert').deepStrictEqual;
     https_proxy: 'http://localhost:7890/',
     };
   var readCliEnvCfg = require('cfg-cli-env-180111-pmb'),
-    cfg = readCliEnvCfg(args, env);
+    cfg = readCliEnvCfg(argv, env);
 
   eq(cfg('--foo'), undefined);
   eq(cfg('foo'), true);
   eq(cfg('bar'), true);
+
+  // argv.slice() yourself if required:
+  eq(cfg('/bin/dummy'), true);
+  eq(cfg('test.js'), true);
 
   eq(cfg('--foo-bar'), undefined);
   eq(cfg('foo_bar'), '12');
