@@ -3,7 +3,8 @@
 /*globals define:true*/
 (function () {
   'use strict';
-  var EX, argKeyRx = /^(\-{2}|)(\w[\w\-]*)(=|$)/;
+  var EX, argKeyRx = /^(\-{2}|)(\w[\w\-]*)(=|$)/,
+    hasOwn = Function.call.bind(Object.prototype.hasOwnProperty);
 
   function splitArg(arg, cfg) {
     var m = (argKeyRx.exec(arg) || ['', '', arg]), dashes = m[1], key = m[2],
@@ -12,12 +13,23 @@
     cfg[key] = val;
   }
 
+  function getOwn(o, k, d) { return (hasOwn(o, k) ? o[k] : d); }
+
+
   EX = function (args, env) {
     var cliOpt = {};
+    if (!env) { env = false; }
     if (args) { args.forEach(function (arg) { splitArg(arg, cliOpt); }); }
-    function cfg(vn) {
-      return (cliOpt[vn] || env[vn] || env[vn.toUpperCase()]);
+    function cfg(vn, df) {
+      var val = getOwn(cliOpt, vn);
+      if (val !== undefined) { return val; }
+      val = getOwn(env, vn);
+      if (val) { return val; }
+      val = getOwn(env, vn.toUpperCase());
+      if (val !== undefined) { return val; }
+      return df;
     }
+    cfg.allCliOpt = cliOpt;
     cfg.guessProxyPort = function (proto) {
       var vn = proto + '_proxy';
       return (+(String(env[vn] || env[vn.toUpperCase] || ''

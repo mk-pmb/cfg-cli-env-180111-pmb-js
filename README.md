@@ -14,6 +14,8 @@ Usage
 
 see [test.usage.js](test.usage.js).
 
+For the default node.js use case, see [node.js](node.js).
+
 <!--#toc stop="scan" -->
 
 
